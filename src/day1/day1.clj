@@ -1,6 +1,6 @@
-(ns day1.day1)
+(ns day1.day1 
+  (:require [utils :refer [parse-int]]))
 (require '[clojure.string :as str])
-
 
 (defn comp [[ac prev] c]
   [(if (> c prev) (inc ac) ac) c])
@@ -8,15 +8,12 @@
 (defn part1 [input]
   (reduce comp [0 Integer/MAX_VALUE] input))
 
-(defn parse-int [val]
-  (Integer/parseInt val))
-
 (defn read-input [file]
   (->> file
        clojure.java.io/resource
        slurp
        str/split-lines
-       (map #(Integer/parseInt %))))
+       (map parse-int)))
 
 (def input1 (read-input "day1/input1.txt"))
 
